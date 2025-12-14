@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+<body>
+
+  <form>
+    <h2>Registration Form</h2>
+    <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    </div>
+   
+    <label>Gender:</label>
+    <div class="radio-group">
+      <input type="radio" id="male" name="gender" value="Male" required>
+      <label for="male">Male</label><br>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label><br>
+      <input type="radio" id="other" name="gender" value="Other">
+      <label for="other">Other</label>
+    </div>
+    <div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="1" placeholder="Enter your age" required>
+    </div>
+    <label for="food">Food Preference:</label>
+    <select id="food" name="food" required>
+      <option value="">--Select--</option>
+      <option value="Veg">Veg</option>
+      <option value="Non-Veg">Non-Veg</option>
+    </select>
+
+    <input type="submit" value="Register">
+  </form>
+
+</body>
+</html>
