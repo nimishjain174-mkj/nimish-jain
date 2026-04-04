@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage</title>
-</head>
+<html>
+    <head>
+        <title>DeskFlow Layout Editor</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 <body>
-    <h1>Nimish Jain</h1>
-    <a href="project.html" alt="error" title="leads to about me">
-        fill Registration form
-    </a>
+    <h1>DeskFlow - Admin Layout Editor</h1>
+    <div class="controls">
+    <button onclick="addSeat()">Add Seat</button>
+    <button onclick="deleteMode()">Delete Seat</button>
+    <button onclick="saveLayout()">Save Layout</button>
+    </div>
+    <svg id="floor" width="900" height="500"></svg>
+    <script src="script.js"></script>
 </body>
 </html>
