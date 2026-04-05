@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f1117;
+    color: #fff;
+}
+.row {
+    display: flex;
+    flex-direction: row;   
+    gap: 18px;
+    margin-bottom: 30px;
+    flex-wrap: nowrap;    
+}
+.container {
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.legend {
+    margin-bottom: 20px;
+}
+
+.legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px 0 15px;
+    border-radius: 3px;
+}
+
+.free { background: #2ecc71; }
+.taken { background: #e74c3c; }
+.meeting { background: #f1c40f; }
+
+.zone {
+    margin-bottom: 30px;
+}
+
+.zone h3 {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.seats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.layout {
+    padding: 30px;
+    width: 100%;
+}
+.seat {
+    min-width: 65px;  
+    height: 65px;
+}
+
+.seat {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+/* Seat States */
+.free-seat {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: #2ecc71;
+}
+
+.taken-seat {
+    background: rgba(231, 76, 60, 0.15);
+    border-color: #e74c3c;
+}
+
+.meeting-seat {
+    background: rgba(241, 196, 15, 0.15);
+    border-color: #f1c40f;
+}
+
+.seat:hover {
+    transform: scale(1.05);
+}
