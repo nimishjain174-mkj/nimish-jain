@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeskFlow Layout Editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>DeskFlow - Admin Layout Editor</h1>
+
+<div class="controls">
+    <button onclick="addSeat()">Add Seat</button>
+    <button onclick="deleteSeatMode()">Delete Mode</button>
+    <button onclick="saveLayout()">Save Layout</button>
+</div>
+
+<div class="header">
+    <h2>Office Layout - Floor 1</h2>
+    <div class="legend">
+        <span class="dot free"></span> Free
+        <span class="dot taken"></span> Taken
+        <span class="dot meeting"></span> Meeting
+    </div>
+</div>
+
+<div class="layout">
+    <p class="zone-title">ZONE A — OPEN WORKSPACE</p>
+    <div class="row" id="zoneA"></div>
+
+    <p class="zone-title">ZONE B — QUIET ZONE</p>
+    <div class="row" id="zoneB"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
