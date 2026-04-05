@@ -1,93 +1,68 @@
-const floor = document.getElementById("floor");
-let seats = [];
-let seatCount = 0;
-let deleteActive = false;
-let selectedSeat = null;
-function addSeat() {
-    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+const zoneA = document.getElementById("zoneA");
+const zoneB = document.getElementById("zoneB");
 
-    const x = 50 + (seatCount * 60);
-    const y = 50;
+// Seat Data (you can later connect this with backend)
+const seatsData = {
+    A: [
+        { id: "A-01", status: "free" },
+        { id: "A-02", status: "free" },
+        { id: "A-03", status: "taken" },
+        { id: "A-04", status: "free" },
+        { id: "A-05", status: "free" },
+        { id: "A-06", status: "free" },
+        { id: "A-07", status: "taken" },
+        { id: "A-08", status: "free" }
+    ],
+    B: [
+        { id: "B-01", status: "free" },
+        { id: "B-02", status: "taken" },
+        { id: "B-03", status: "free" },
+        { id: "B-04", status: "free" },
+        { id: "B-05", status: "taken" },
+        { id: "B-06", status: "free" }
+    ]
+};
 
-    rect.setAttribute("x", x);
-    rect.setAttribute("y", y);
-    rect.setAttribute("width", 40);
-    rect.setAttribute("height", 40);
-    rect.setAttribute("class", "seat");
+// Create seat element
+function createSeat(seat) {
+    const div = document.createElement("div");
+    div.classList.add("seat");
 
-    rect.dataset.id = seatCount;
-    rect.addEventListener("mousedown", startDrag);
-    rect.addEventListener("click", deleteSeat);
-    floor.appendChild(rect);
-    seats.push({
-        id: seatCount,
-        x: x,
-        y: y
+    if (seat.status === "free") div.classList.add("free-seat");
+    if (seat.status === "taken") div.classList.add("taken-seat");
+    if (seat.status === "meeting") div.classList.add("meeting-seat");
+
+    div.innerHTML = `
+        <div>○</div>
+        <div>${seat.id}</div>
+    `;
+
+    // Click toggle (for demo)
+    div.addEventListener("click", () => {
+        if (seat.status === "free") {
+            seat.status = "taken";
+        } else {
+            seat.status = "free";
+        }
+        renderSeats();
     });
 
-    seatCount++;
-}
-function deleteMode() {
-    deleteActive = true;
-    alert("Click on a seat to delete");
+    return div;
 }
 
-function deleteSeat(event) {
-    if (!deleteActive) return;
+// Render function
+function renderSeats() {
+    zoneA.innerHTML = "";
+    zoneB.innerHTML = "";
 
-    const seat = event.target;
-    const id = seat.dataset.id;
+    seatsData.A.forEach(seat => {
+        zoneA.appendChild(createSeat(seat));
+    });
 
-    floor.removeChild(seat);
-
-    seats = seats.filter(s => s.id != id);
-
-    deleteActive = false;
+    seatsData.B.forEach(seat => {
+        zoneB.appendChild(createSeat(seat));
+    });
 }
-function startDrag(event) {
-    selectedSeat = event.target;
 
-    document.addEventListener("mousemove", dragSeat);
-    document.addEventListener("mouseup", stopDrag);
-}
-function dragSeat(event) {
-    if (!selectedSeat) return;
-
-    const rect = floor.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    selectedSeat.setAttribute("x", x);
-    selectedSeat.setAttribute("y", y);
-
-    const id = selectedSeat.dataset.id;
-    const seat = seats.find(s => s.id == id);
-
-    if (seat) {
-        seat.x = x;
-        seat.y = y;
-    }
-}
-function stopDrag() {
-    document.removeEventListener("mousemove", dragSeat);
-    document.removeEventListener("mouseup", stopDrag);
-
-    selectedSeat = null;
-}
-function saveLayout() {
-    console.log("Layout Data:", seats);
-
-    fetch("/saveLayout", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(seats)
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
-
-    alert("Layout saved successfully");
-}
+// Initial load
+renderSeats();s
